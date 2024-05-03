@@ -13,3 +13,4 @@ const parkTypesArray = [
     "Trail",
     "Parkway"
 ]
+export default parkTypesArray;
