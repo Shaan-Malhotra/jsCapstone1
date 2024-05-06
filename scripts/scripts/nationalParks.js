@@ -4,7 +4,7 @@ import locationsArray from './locationData.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     const typeSelect = document.getElementById('type');
-    const typeSearchButton = document.getElementById('searchButton');
+    const typeSearchButton = document.getElementById('typeSearchButton');
     const locationSelect = document.getElementById('location');
     const locationSearchButton = document.getElementById('locationSearchButton');
 
@@ -38,20 +38,20 @@ document.addEventListener('DOMContentLoaded', function () {
     function handleTypeSearch() {
         const selectedType = typeSelect.value.trim().toLowerCase();
         // Filter parks by selected type
-        const typeParks = nationalParksArray.filter(park => park.type.toLowerCase() === selectedType);
+        const typeParks = nationalParksArray.filter(park => park.LocationName.toLowerCase().includes(selectedType));
         // Redirect to search results page with filtered parks
-        redirectToSearchResults(typeParks);
+        displayParksByType(typeParks);
     }
 
     function displayParksByState(filteredParks) {
-        const parkListContainer = document.getElementById('parkListContainer');
-        parkListContainer.innerHTML = ''; // Clear previous park list
+        const parkListContainerState = document.getElementById('parkListContainerState');
+        parkListContainerState.innerHTML = ''; // Clear previous park list
 
         if (filteredParks.length === 0) {
             // Display message if no parks found
             const message = document.createElement('p');
             message.textContent = 'No national parks found in the selected state.';
-            parkListContainer.appendChild(message);
+            parkListContainerState.appendChild(message);
         } else {
             // Create list of parks
             const parkList = document.createElement('ul');
@@ -60,7 +60,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 listItem.textContent = park.LocationName;
                 parkList.appendChild(listItem);
             });
-            parkListContainer.appendChild(parkList);
+            parkListContainerState.appendChild(parkList);
+        }
+    }
+
+    function displayParksByType(filteredParks) {
+        const parkListContainerType = document.getElementById('parkListContainerType');
+        parkListContainerType.innerHTML = ''; // Clear previous park list
+
+        if (filteredParks.length === 0) {
+            // Display message if no parks found
+            const message = document.createElement('p');
+            message.textContent = 'No national parks found with the selected type.';
+            parkListContainerType.appendChild(message);
+        } else {
+            // Create list of parks
+            const parkList = document.createElement('ul');
+            filteredParks.forEach(park => {
+                const listItem = document.createElement('li');
+                listItem.textContent = park.LocationName;
+                parkList.appendChild(listItem);
+            });
+            parkListContainerType.appendChild(parkList);
         }
     }
 });
