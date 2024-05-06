@@ -30,6 +30,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function handleLocationSearch() {
         const selectedState = locationSelect.value.trim().toLowerCase();
+        if (!selectedState) {
+            alert("Please select a state.");
+            return;
+        }
         // Filter parks by selected state
         const stateParks = nationalParksArray.filter(park => park.State.toLowerCase() === selectedState);
         // Redirect to search results page with filtered parks
@@ -37,10 +41,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     function handleTypeSearch() {
         const selectedType = typeSelect.value.trim().toLowerCase();
+        if (!selectedType) {
+            alert("Please select a park type.");
+            return;
+        }
         // Filter parks by selected type
         const typeParks = nationalParksArray.filter(park => park.LocationName.toLowerCase().includes(selectedType));
         // Redirect to search results page with filtered parks
         displayParksByType(typeParks);
+       
     }
 
     function displayParksByState(filteredParks) {
@@ -70,11 +79,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function displayParksByType(filteredParks) {
+    function displayParksByType(filteredParkType) {
         const parkListContainerType = document.getElementById('parkListContainerType');
         parkListContainerType.innerHTML = ''; // Clear previous park list
+        console.log(filteredParkType);
 
-        if (filteredParks.length === 0) {
+        if (filteredParkType.length === 0) {
             // Display message if no parks found
             const message = document.createElement('p');
             message.textContent = 'No national parks found with the selected type.';
@@ -82,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             // Create list of parks
             const parkList = document.createElement('ul');
-            filteredParks.forEach(park => {
+            filteredParkType.forEach(park => {
                 const listItem = document.createElement('li');
                 let parkInfo;
                 if (park.Visit) {

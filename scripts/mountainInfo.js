@@ -3,6 +3,20 @@ import mountainsArray from './mountainData.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     const mountainSelect = document.getElementById('mountainSelect');
+    let sunrise;
+    let sunset;
+    async function getSunriseForMountain(lat, lng){
+        let response = await fetch(
+        `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=today`);
+        let data = await response.json();
+        return data.results.sunrise;
+    }
+    async function getSunsetForMountain(lat, lng){
+        let response = await fetch(
+        `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=today`);
+        let data = await response.json();
+        return data.results.sunset;
+    }
 
     mountainsArray.forEach(mountain => {
         const option = document.createElement('option');
@@ -29,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
         // Find the mountain object with the given name in the mountainsArray
         const selectedMountain = mountainsArray.find(mountain => mountain.name.toLowerCase() === mountainName);
-        console.log(selectedMountain);
     
         if (!selectedMountain) {
             // Display message if the mountain is not found
@@ -37,11 +50,16 @@ document.addEventListener('DOMContentLoaded', function () {
             message.textContent = 'Mountain information not found.';
             mountainInfoContainer.appendChild(message);
         } else {
+            const sunset = getSunriseForMountain(selectedMountain.coords.lat, selectedMountain.coords.lng);
+            const sunrise = getSunsetForMountain(selectedMountain.coords.lat, selectedMountain.coords.lng);
             const mountainNameHeader = document.createElement('h3');
             const mountainElevation = document.createElement('p');
             const mountainEffort = document.createElement('p');
+            const mountainSunrise = document.createElement('p');
+            const mountainSunset = document.createElement('p');
             const mountainDescription = document.createElement('p');
             const mountainImage = document.createElement('img');
+            
             
             mountainNameHeader.textContent = `Selected mountain: ${selectedMountain.name}`;
             mountainElevation.textContent = `Elevation: ${selectedMountain.elevation}`;
@@ -55,8 +73,21 @@ document.addEventListener('DOMContentLoaded', function () {
             mountainInfoContainer.appendChild(mountainEffort);
             mountainInfoContainer.appendChild(mountainDescription);
             mountainInfoContainer.appendChild(mountainImage);
+
+        
+            getSunriseForMountain(selectedMountain.coords.lat, selectedMountain.coords.lng)
+            .then(sunrise => {
+                mountainSunrise.textContent = `Sunrise: ${sunrise}`;
+                mountainInfoContainer.appendChild(mountainSunrise);
+            });
+
+            getSunsetForMountain(selectedMountain.coords.lat, selectedMountain.coords.lng)
+                .then(sunset => {
+                    mountainSunset.textContent = `Sunset: ${sunset}`;
+                    mountainInfoContainer.appendChild(mountainSunset);
+                });
         }
     }
 
-    
+   
 });
