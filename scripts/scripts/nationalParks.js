@@ -57,7 +57,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const parkList = document.createElement('ul');
             filteredParks.forEach(park => {
                 const listItem = document.createElement('li');
-                listItem.textContent = park.LocationName;
+                let parkInfo;
+                if (park.Visit) {
+                    parkInfo = `${park.LocationName} (Visit: <a href="${park.Visit}" target="_blank">${park.Visit}</a>)`;
+                } else {
+                    parkInfo = park.LocationName;
+                }
+                listItem.innerHTML = parkInfo;
                 parkList.appendChild(listItem);
             });
             parkListContainerState.appendChild(parkList);
@@ -78,7 +84,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const parkList = document.createElement('ul');
             filteredParks.forEach(park => {
                 const listItem = document.createElement('li');
-                listItem.textContent = park.LocationName;
+                let parkInfo;
+                if (park.Visit) {
+                    parkInfo = `${park.LocationName} (Visit: <a href="${park.Visit}" target="_blank">${park.Visit}</a>)`;
+                } else {
+                    parkInfo = park.LocationName;
+                }
+                listItem.innerHTML = parkInfo;
                 parkList.appendChild(listItem);
             });
             parkListContainerType.appendChild(parkList);
