@@ -1,0 +1,72 @@
+nav
+{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 0px;
+    z-index: 1000;
+}
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+.parks {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-image: url('/images/backgroundImage2.jpg');
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    min-height: 100vh;
+    background-position: center center;
+}
+.home{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-image: url('/images/Soothing-nature-backgrounds-2.jpg.jpg');
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    min-height: 100vh;
+    background-position: center center;
+}
+.mountain {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-image: url('/images/mountainBackground.jpeg');
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    min-height: 100vh;
+    background-position: center center;
+}
+header {
+    
+    background-color: #9a5524; /* Light brown color */
+    padding: 50px;
+    text-align: center;
+    margin-right: 246px;
+    margin-left: 246px;
+}
+
+header h1 {
+    margin-bottom: 20px;
+    color: #f5eeee;
+}
+
+header p {
+    color: #f5eeee;
+    font-size: 18px;
+}
+.centeredImage {
+    display: block;
+    margin: 0 auto; /* Center the image */
+    width: 72.5%;
+    height: 50%;
+}
+.card {
+    background-color: #28652b; /* Light green color */
+    color: #f5eeee; 
+    margin: auto;
+}
+#mountainInfoContainer {
+    margin: auto;
+  }
+

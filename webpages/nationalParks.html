@@ -7,10 +7,10 @@
     <link href="/css/main.css" rel="stylesheet">
     <title>nationalParks</title>
 </head>
-<body>
+<body class="parks">
 
     <div class="container">
-        <nav class="bg-light border navbar navbar-expand-md navbar-light">
+        <nav class="bg-light border navbar navbar-expand-md">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/" style="font-size: 24px; font-weight: bold; font-family: 'Bebas Neue', sans-serif;">Enjoy The Outdoors</a>
                 <!-- Navbar toggler -->
@@ -27,20 +27,41 @@
             </div>
         </nav>
     </div>
-    <label for="type">Search by Park Type:</label>
-    <select id="type">
-        <option value="" disabled selected>Type</option>
-    </select>
-    <button id="typeSearchButton">Search</button>
-    <div id="parkListContainerType"></div>
-    <br><br>
-    <label for="location">Search by Location:</label>
-    <select id="location">
-        <option value="" disabled selected>State</option>  
-    </select>
-    <button id="locationSearchButton">Search</button>
-    <div id="parkListContainerState"></div>
-
+    
+    <header class="text-center mb-5">
+        <h1>National Parks Search</h1>
+        <p>Welcome to our nature and mountain-themed website. Explore information about national parks and mountains.</p>
+    </header>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Search by Park Type</h5>
+                        <select id="type" class="form-control mb-3">
+                            <option value="" disabled selected>Type</option>
+                        </select>
+                        <button id="typeSearchButton" class="btn btn-primary">Search</button>
+                        <div id="parkListContainerType" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Search by Location</h5>
+                        <select id="location" class="form-control mb-3">
+                            <option value="" disabled selected>State</option>  
+                        </select>
+                        <button id="locationSearchButton" class="btn btn-primary">Search</button>
+                        <div id="parkListContainerState" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/scripts/nationalParks.js" type="module"></script>
     <script src="/scripts/nationalParkData.js" type="module"></script>
